@@ -12,19 +12,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="favoritos")
 public class Favorito {
-	
+	//Por hacer, falta investigar de manera correcta Many-to-Many
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@ManyToOne
-	@JoinColumn(name="usuario_id", referencedColumnName = "id")
-	private Solicitud solicitudid;
-	
-	
-	
-	
-	
-	
+	private long id;	
 	
 }

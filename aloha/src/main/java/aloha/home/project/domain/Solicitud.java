@@ -22,17 +22,22 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "solicitud")
 public class Solicitud {
-
+	//Todos las columnas necesitarán eventualmente la notación @NotNull, por el momento no se aplica ya que estamos haciendo testeo
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	@Column (name="id")
 	private long id;
 	
+	
+	//Entidad de tipo padre bidireccional OneToMany - ManyToOne
+	//JoinColumn referencia el Long en vez de la entidad, cada vez que se crea algo en la entidad Usuario,
+	//Solicitud tomará como llave referencial un ID en vez de la entidad completa
 	@ManyToOne
 	@JoinColumn(name="usuarioid", insertable = false, updatable = false)
 	private Usuario usuario;
 	
+	//Llave foránea Numeral en vez de clase
 	private long usuarioid;
 	
 	@Column(name="titulo")
@@ -56,21 +61,22 @@ public class Solicitud {
 	@Column(name="banos")
 	private int banos;
 	
+	//Dinero que posee el solicitante
 	@Column(name="presupuesto")
 	private int presupuesto;
 	
 	@Column(name="cochera")
 	private boolean cochera;
 	
+	
+	//Estado de la solicitud, se diferencia de eliminar ya que esta sólo cambia la visibilidad en la página,
+	//mantiene la solicitud en la DB y Spring
 	@Column(name="estado")
 	private boolean estado;
 	
 	public Solicitud() {
 		super();
 	}
-
-	
-	
 
 	public Solicitud(long usuarioid, String titulo, String tiposol, int superficie, String provincia, String distrito,
 			int habitaciones, int banos, int presupuesto, boolean cochera, boolean estado) {
@@ -141,6 +147,8 @@ public class Solicitud {
 		this.id = id;
 	}
 
+	//Esta anotación evita el error de la recursión infinita
+	//https://stackoverflow.com/questions/31319358/jsonmanagedreference-vs-jsonbackreference
 	@JsonBackReference
 	public Usuario getUsuario() {
 		return usuario;

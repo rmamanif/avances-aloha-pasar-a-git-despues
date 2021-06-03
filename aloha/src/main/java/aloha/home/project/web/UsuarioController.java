@@ -25,8 +25,9 @@ import aloha.home.project.service.UsuarioService;
 
 @RestController
 @RequestMapping(value="/usuarios")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
-
+	//Controlador
 	@Autowired
 	private UsuarioService service;
 	
@@ -79,12 +80,20 @@ public class UsuarioController {
 		}
 	}
 	
+	
+	//Login, funciona de la siguiente manera
+	//Crea un ResponseEntity, a manera de recibir una respuesta del servidor
+	//Requiere de un cuerpo con los valores correo y password
+	//Si existe el usuario, devuelve todos sus campos, de esta manera podemos mostrar los datos del perfil
+	//El manejo de edición de solicitudes se maneja a través de la entidad solicitudes
+	//CRUD "Mi perfil"
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
-		Usuario usr=null;
+		Usuario usr=new Usuario();
 		System.out.println(usuario.getCorreo());
 		System.out.println(usuario.getPassword());
 		try {
+			//Hace uso del servicio para implementar la búsqueda por correo y password
 			usr=service.findByCorreoAndPassword(usuario.getCorreo(), usuario.getPassword());
 			System.out.println(usuario.getCorreo());
 			System.out.println(usuario.getPassword());

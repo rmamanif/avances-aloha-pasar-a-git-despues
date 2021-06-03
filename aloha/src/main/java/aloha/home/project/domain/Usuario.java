@@ -24,12 +24,15 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.Nullable;
 
 @Entity
-@Table(name="usuario", indexes = {@Index(name="no_dupe_correo",columnList = "correo", unique = true)})
+@Table(name="usuario", indexes = {@Index(name="no_dupe_correo",columnList = "correo", unique = true)}) //Index=No duplicado sin ser PK
 public class Usuario {
+	
+	//Todos las columnas necesitarán eventualmente la notación @NotNull, por el momento no se aplica ya que estamos haciendo testeo
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="id")
 	private long id;
+	
 	@Column (name="correo")
 	private String correo;
 	@Column (name="nombre")
@@ -42,14 +45,19 @@ public class Usuario {
 	private String telefono;
 	@Column(name ="nro_celular")
 	private String celular;
+	
+	//Esta columna no sirve, eventualmente la borraremos si nos falta tiempo para implementar una seguridad real
 	@Column(name ="token")
 	private String token;
 	
-	@OneToMany(mappedBy = "usuarioid")
+	//Entidad mapeada, toma el rol de hijo
+	//Con esto se relaciona el id del usuario con el fk, evitar cambiar el auto_increment de manera manual en SQL
+	@OneToMany(mappedBy = "usuarioid", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Solicitud> solicitudes;
 	
 	
-	
+	//Evita la recursión, para más información revisa el link de abajo
+	//https://stackoverflow.com/questions/31319358/jsonmanagedreference-vs-jsonbackreference
 	@JsonManagedReference
 	public List<Solicitud> getSolicitudes() {
 		return solicitudes;

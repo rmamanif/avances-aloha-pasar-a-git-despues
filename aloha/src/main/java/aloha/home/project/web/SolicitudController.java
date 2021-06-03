@@ -22,8 +22,8 @@ import aloha.home.project.exception.SolicitudNotFoundException;
 import aloha.home.project.service.SolicitudService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value="/solicitud")
+@CrossOrigin(origins = "*")
 public class SolicitudController {
 	
 	@Autowired

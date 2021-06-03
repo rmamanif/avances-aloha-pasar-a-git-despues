@@ -4,6 +4,7 @@ import aloha.home.project.domain.Solicitud;
 import aloha.home.project.exception.SolicitudNotFoundException;
 
 public interface SolicitudService {
+	//Dao de la solicitud, aquí implementas el CRUD básico de JPA y tus Query personalizados
 	
 	//Create
 	Solicitud create(Solicitud usuario);

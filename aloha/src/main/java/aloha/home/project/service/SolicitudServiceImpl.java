@@ -19,6 +19,8 @@ public class SolicitudServiceImpl implements SolicitudService {
 	@Autowired
 	SolicitudRepository solicitudRepository;
 
+	//Implementación del repositorio, convierte el CRUD en Servicio según las clases del DAO
+	
 	@Override
 	public Solicitud create(Solicitud solicitud) {
 		return solicitudRepository.save(solicitud);

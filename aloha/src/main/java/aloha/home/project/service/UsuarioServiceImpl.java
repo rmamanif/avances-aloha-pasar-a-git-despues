@@ -44,6 +44,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuario.get();
 	}
 
+	//El método es una clase Usuario, se usa Optional a manera de hacer nulo el resultado
+	//Falta optimizar para 404 not found
 	@Override
 	public Usuario findByCorreoAndPassword(String correo, String password) throws UsuarioNotFoundException {
 		Optional<Usuario> user=Optional.of(usuarioRepository.findByCorreoAndPassword(correo, password));
@@ -51,6 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new UsuarioNotFoundException("Usuario no encontrado...");
 		return user.get();
 	}
+	
 	@Override
 	public Iterable<Usuario> findAll() {
 		return usuarioRepository.findAll();

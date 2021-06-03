@@ -4,6 +4,7 @@ import aloha.home.project.domain.Usuario;
 import aloha.home.project.exception.UsuarioNotFoundException;
 
 public interface UsuarioService {
+	//Dao del usuario, aquí implementas el CRUD básico de JPA y tus Query personalizados
 	
 	//Create
 	Usuario create(Usuario usuario);
