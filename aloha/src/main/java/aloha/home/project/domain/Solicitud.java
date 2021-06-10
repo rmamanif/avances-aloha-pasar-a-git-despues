@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -36,6 +37,14 @@ public class Solicitud {
 	@ManyToOne
 	@JoinColumn(name="usuarioid", insertable = false, updatable = false)
 	private Usuario usuario;
+	
+	
+	
+	
+	//Entidad mapeada
+	//Con esta realacion se esta implementado el MaytoMany en solicitud
+	@OneToMany(mappedBy = "solicitud")
+	Set<Favorito> favorito;
 	
 	//Llave foránea Numeral en vez de clase
 	private long usuarioid;

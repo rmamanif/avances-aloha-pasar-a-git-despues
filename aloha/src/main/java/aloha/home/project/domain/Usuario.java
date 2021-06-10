@@ -56,6 +56,14 @@ public class Usuario {
 	private List<Solicitud> solicitudes;
 	
 	
+	
+	//Entidad mapeada
+	//Con esta realacion se esta implementado el MaytoMany en usuario
+	@OneToMany(mappedBy = "usuario_id")
+	Set<Favorito> favorito;
+	
+	
+	
 	//Evita la recursión, para más información revisa el link de abajo
 	//https://stackoverflow.com/questions/31319358/jsonmanagedreference-vs-jsonbackreference
 	@JsonManagedReference
