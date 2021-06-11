@@ -49,5 +49,6 @@ public class FavoritoController {
 	}
 	
 	
-	//FALTA EL PUT
+	
+	
 }

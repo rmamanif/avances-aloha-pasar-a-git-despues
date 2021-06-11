@@ -3,7 +3,7 @@ package aloha.home.project.service;
 import aloha.home.project.domain.Favorito;
 import aloha.home.project.exception.FavoritoNotFoundException;
 
-public class FavoritoService {
+public interface FavoritoService {
 	//DAO
 	//CREATE
 	Favorito create(Favorito usuario_id);

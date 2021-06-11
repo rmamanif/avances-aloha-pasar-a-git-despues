@@ -11,7 +11,7 @@ import aloha.home.project.exception.FavoritoNotFoundException;
 
 
 @Service
-public interface FavoritoServiceImpl implements FvoritoService{
+public class FavoritoServiceImpl implements FavoritoService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 	
@@ -42,6 +42,12 @@ public interface FavoritoServiceImpl implements FvoritoService{
 	@Override
 	public Iterable<Favorito> findAll(){
 		return favoritoRepository.findAll();
+	}
+
+	@Override
+	public Favorito findById(long id) throws FavoritoNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
